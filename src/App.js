@@ -27,7 +27,7 @@ function App() {
   }
   
   const displayDogBreeds = (dogsList, cmp) => dogsList.map(dogBreed => {
-    return <li key={dogBreed}><button onClick={!favDogs.includes(dogBreed) ? addFavDogBreed : removeFavDogBreed} value={dogBreed}>{dogBreed}</button></li>
+    return <li key={`${dogBreed}-${cmp}`}><button onClick={!favDogs.includes(dogBreed) ? addFavDogBreed : removeFavDogBreed} value={dogBreed}>{dogBreed}</button></li>
   })
   return (
     <div className="App">
