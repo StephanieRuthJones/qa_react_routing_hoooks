@@ -1,7 +1,14 @@
 import React, {useState, useEffect} from 'react'
 import './App.css';
-import FavDogs from './components/FavDogs';
-import Dogs from './components/Dogs'
+import FavDogs from './components/list-components/FavDogs';
+import Dogs from './components/list-components/Dogs'
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Link
+} from "react-router-dom"
+
 function App() {
   const [dogBreedsList, setDogBreedsList] = useState([])
   const [favDogs, setFavDogs] = useState([])
@@ -27,14 +34,36 @@ function App() {
   }
   
   const displayDogBreeds = (dogsList, cmp) => dogsList.map(dogBreed => {
-    return <li key={dogBreed}><button onClick={!favDogs.includes(dogBreed) ? addFavDogBreed : removeFavDogBreed} value={dogBreed}>{dogBreed}</button></li>
+    return <li key={`${dogBreed}-${cmp}`}><button onClick={!favDogs.includes(dogBreed) ? addFavDogBreed : removeFavDogBreed} value={dogBreed}>{dogBreed}</button></li>
   })
   return (
     <div className="App">
-      <Dogs dogBreedsList={dogBreedsList} displayDogBreeds={displayDogBreeds} />
-      <FavDogs favDogs={favDogs} displayDogBreeds={displayDogBreeds}/>
+      <BrowserRouter>
+        <div>
+          <nav>
+            <ul>
+              <li>
+                <Link to="/" >Dog Breed List</Link>
+              </li>
+              <li>
+                <Link to="/favorites">Favorite Dogs</Link>
+              </li>
+             
+            </ul>
+          </nav>
+          <Routes>
+            <Route
+              path="/"
+              element={<Dogs dogBreedsList={dogBreedsList} displayDogBreeds={displayDogBreeds} />}>
+              
+            </Route>
+            <Route path="/favorites" element={              <FavDogs favDogs={favDogs} displayDogBreeds={displayDogBreeds} />}>
+            </Route>
+          </Routes>
+        </div>
+      </BrowserRouter>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
