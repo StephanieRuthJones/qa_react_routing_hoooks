@@ -2,7 +2,7 @@
 
 Create a Dogs component that...
 * fetches a list of dog breeds from `https://dog.ceo/api/breeds/list/all` 
-* displays fetched dog breeds as items in an unordered list
+* displays fetched dog breeds as items in an unordered list of buttons
 * allows users to click on dog breeds in list and add them to a "Favorite Dog Breeds List"
 
 # Step 2
