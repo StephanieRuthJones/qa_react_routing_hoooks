@@ -12,14 +12,15 @@ const Dog = () => {
         }
         fetchDogs() 
     }, [])
+
     const addFavDogBreed = e => {
         const dog = e.target.value
         !favDogs.includes(dog) && setFavDogs([...favDogs, dog])
         
     }
 
-    const displayDogBreeds = (dogsList) => dogsList.map(dogBreed => {
-        return <li><button onClick={addFavDogBreed} value={dogBreed}>{dogBreed}</button></li>
+    const displayDogBreeds = (dogsList, lName) => dogsList.map((dogBreed, i) => {
+        return <li key={`${dogsList}-${lName}-${i}`}><button onClick={addFavDogBreed} value={dogBreed}>{dogBreed}</button></li>
     })
     
  
